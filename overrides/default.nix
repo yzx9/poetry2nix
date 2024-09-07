@@ -1142,19 +1142,19 @@ lib.composeManyExtensions [
         old: {
           patchPhase = ''
             substituteInPlace setup.py \
-              --replace "/usr/include/openjpeg-2.3" \
+              --replace-fail "/usr/include/openjpeg-2.3" \
                         "${pkgs.openjpeg.dev}/include/${pkgs.openjpeg.dev.incDir}"
             substituteInPlace setup.py \
-              --replace "/usr/include/jxrlib" \
+              --replace-fail "/usr/include/jxrlib" \
                         "$out/include/libjxr"
             substituteInPlace imagecodecs/_zopfli.c \
-              --replace '"zopfli/zopfli.h"' \
+              --replace-warn '"zopfli/zopfli.h"' \
                         '<zopfli.h>'
             substituteInPlace imagecodecs/_zopfli.c \
-              --replace '"zopfli/zlib_container.h"' \
+              --replace-warn '"zopfli/zlib_container.h"' \
                         '<zlib_container.h>'
             substituteInPlace imagecodecs/_zopfli.c \
-              --replace '"zopfli/gzip_container.h"' \
+              --replace-warn '"zopfli/gzip_container.h"' \
                         '<gzip_container.h>'
           '';
 
